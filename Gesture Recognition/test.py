@@ -6,7 +6,7 @@ import HandTrackingModule as htm
 
 wCam, hCam = 1280, 720
 captureInterval = 3
-gestureMode = "YesNo"
+gestureMode = "Rating"
 upCount = 0
 downCount = 0
 
@@ -24,9 +24,8 @@ while True:
     img = detector.findHands(img, False)
     lmList = detector.findPosition(img, False)
 
-    print("Thumbs Up: " + str(upCount) + ", Thumbs Down: " + str(downCount))
-
-    if (gestureMode == "YesNo"):
+    if (gestureMode == "YesNo"):  
+        print("Thumbs Up: " + str(upCount) + ", Thumbs Down: " + str(downCount))
         gesture = detector.thumbsUpDown(img)
         if (gesture != 0):
             
@@ -38,6 +37,9 @@ while True:
                 downCount += 1
             
             time.sleep(captureInterval)
+    
+    if (gestureMode == "Rating"):
+        print(detector.fingersUp(img))
     
     currTime = time.time()
     fps = 1/(currTime-prevTime)
