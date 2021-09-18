@@ -14,20 +14,16 @@ def home():
 
 @app.route('/api/v1/classify', methods=['POST'])
 def classify():
-    img_bytes = request.data[22:]
+    img_bytes = base64.b64decode(request.data[22:])
     img = np.array(Image.open(io.BytesIO(img_bytes)))
-
-    # f = open("img.png", "wb")
-    # f.write(base64.b64decode(img[22:]))
-    # f.close()
     
-    # img = request.data
-    # gestureMode = "YesNo"
-    # detector = htm.HandDetector(min_detection_confidence=0.85)
-    # img = detector.findHands(img, False)
-    # lmList = detector.findPosition(img, False)
-    # if (gestureMode == "YesNo"):
-    #     print(detector.thumbsUpDown(img))
-    return jsonify({"something":"something"})
+    gestureMode = "YesNo"
+    detector = htm.HandDetector(min_detection_confidence=0.85)
+    img = detector.findHands(img, False)
+    lmList = detector.findPosition(img, False)
+    result = 0
+    if (gestureMode == "YesNo"):
+        result = detector.thumbsUpDown(img)
+    return jsonify({"something":result})
 if __name__ == '__main__':
     app.run()
