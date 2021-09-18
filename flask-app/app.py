@@ -27,9 +27,12 @@ def classify():
     
     # result type 2: rating 1-5
     if (img_type == 'rating'):
-        result = gr.getRating(img[0])
+        result = gr.getRating(img)
 
     print(result)
+
+    #if result != 0:
+        # send request to stop classification for x seconds
 
     return jsonify({"classification": result})
 
