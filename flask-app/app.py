@@ -18,7 +18,7 @@ def classify():
     img_type = data_dict['img_type']
     img_bytes = base64.b64decode(data_dict['img_bytes'][22:])
     img = np.array(Image.open(io.BytesIO(img_bytes)))
-    img = cv.imread(img, 1)
+    img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     
     result = 'null'
     # result type 1: thumbs up / down
