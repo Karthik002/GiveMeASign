@@ -4,6 +4,7 @@ import time
 
 class HandDetector():
     def __init__(self, static_image_mode = False, max_num_hands = 2, min_detection_confidence = 0.75, min_tracking_confidence = 0.5):
+        
         self.static_image_mode = static_image_mode
         self.max_num_hands = max_num_hands
         self.min_detection_confidence = min_detection_confidence
@@ -17,6 +18,7 @@ class HandDetector():
         self.fingersOutput = ["zero", "one", "two", "three", "four", "five"]
     
     def findHands(self, img, draw = True):
+        
         imgRGB = cv.cvtColor(img, cv.COLOR_BGR2RGB)
         self.results = self.hands.process(imgRGB)
 
@@ -28,11 +30,15 @@ class HandDetector():
         return img
 
     def findPosition(self, img, handNumber = 0, draw = True):
+        
         self.lmList = []
 
         if self.results.multi_hand_landmarks:
+            
             myHand = self.results.multi_hand_landmarks[handNumber] # doing for one hand
+            
             for id, lm in enumerate(myHand.landmark):
+                
                 h, w, c = img.shape
                 cx = int(lm.x*w)
                 cy  = int(lm.y*h)
@@ -45,6 +51,7 @@ class HandDetector():
         return self.lmList
 
     def thumbsUpDown(self, img):
+        
         if len(self.lmList) != 0:
 
             thumb = self.lmList[4][2]
@@ -62,13 +69,14 @@ class HandDetector():
                 return -1
             else:
                 return 0
+        
         else:
             return 0
 
-
-
     def fingersUp(self, img, draw=True):
+        
         self.fingers = []
+        
         if len(self.lmList) != 0:
             outputText = self.fingersOutput[0]
 
@@ -87,12 +95,12 @@ class HandDetector():
 
             if draw:
                 cv.putText(img, str(self.fingersOutput[totalFingers]), (400, 120), cv.FONT_HERSHEY_DUPLEX, 5, (255, 255,255), 4)
-    
-        return self.fingers
 
+        return self.fingers.count(1)
 
 
 def main():
+    
     prevTime = 0
     currTime = 0
     cap = cv.VideoCapture(0)
@@ -111,8 +119,6 @@ def main():
 
         cv.imshow("Image", img)
         cv.waitKey(1)
-
-
 
 if __name__ == "__main__":
     main()
