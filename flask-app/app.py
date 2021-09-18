@@ -16,13 +16,13 @@ def home():
 def classify():
     img_bytes = base64.b64decode(request.data[22:])
     img = np.array(Image.open(io.BytesIO(img_bytes)))
-    img = cv.imread(img, 1)
+    img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
     
     # result type 1: thumbs up / down
-    result = gr.getThumbsUpDown(img)
+    #result = gr.getThumbsUpDown(img)
     
     # result type 2: rating 1-5
-    #result = gr.getRating(img[0])
+    result = gr.getRating(img)
 
     print(result)
 

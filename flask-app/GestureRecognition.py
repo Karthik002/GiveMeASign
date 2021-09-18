@@ -23,7 +23,7 @@ def getRating(img):
 
 def main():
 
-    img = cv.imread(f'images/down.jpg')
+    img = cv.imread(f'images/img.jpg')
     print(getThumbsUpDown(img))
 
 if __name__ == "__main__":
