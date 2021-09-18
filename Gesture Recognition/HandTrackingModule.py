@@ -48,20 +48,20 @@ class HandDetector():
         if len(self.lmList) != 0:
 
             thumb = self.lmList[4][2]
-            index = self.lmlist[6][2]
+            index = self.lmList[6][2]
             middle = self.lmList[10][2]
             ring = self.lmList[14][2]
             pinky = self.lmList[18][2]
 
             # thumbs up
             if (thumb < index and index < middle and middle < ring and ring < pinky):
-                cv.putText(img, str("Thumbs up"), (100, 170), cv.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
                 return 1
 
             # thumbs down
             elif (thumb > index and index > middle and middle > ring and ring > pinky):
-                cv.putText(img, str("Thumbs down"), (100, 170), cv.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
                 return -1
+            else:
+                return 0
         else:
             return 0
 

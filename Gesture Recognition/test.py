@@ -1,41 +1,50 @@
-import mediapipe as mp
-import cv2
+import cv2 as cv
+import time
+from cv2 import data
 import numpy as np
-import uuid
-import os
+import HandTrackingModule as htm
 
-mp_drawing = mp.solutions.drawing_utils
-mp_hands = mp.solutions.hands
+wCam, hCam = 1280, 720
+captureInterval = 3
+gestureMode = "YesNo"
+upCount = 0
+downCount = 0
 
-cap = cv2.VideoCapture(0)
+cap = cv.VideoCapture(0)
+cap.set(3, wCam)
+cap.set(4, hCam)
+prevTime = 0
 
-with mp_hands.Hands(min_detection_confidence=0.8, min_tracking_confidence=0.5) as hands:
+detector = htm.HandDetector(min_detection_confidence=0.85)
 
-    while cap.isOpened():
-        ret, frame = cap.read()
+while True:
 
-        # Detections
-        image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        image = cv2.flip(image, 1)
-        image.flags.writeable = False
-        results = hands.process(image)
-        image.flags.writeable = True
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    success, img = cap.read()
+    img = cv.flip(img, 1)
+    img = detector.findHands(img, False)
+    lmList = detector.findPosition(img, False)
 
-        # rendering results
-        if results.multi_hand_landmarks:
-            for num, hand in enumerate(results.multi_hand_landmarks):
-                mp_drawing.draw_landmarks(image, hand, 
-                mp_hands.HAND_CONNECTIONS,
-                mp_drawing.DrawingSpec(color=(0, 0,255), thickness=2, circle_radius=4),
-                mp_drawing.DrawingSpec(color=(255, 255, 255), thickness=2, circle_radius=2)
-                )
+    print("Thumbs Up: " + str(upCount) + ", Thumbs Down: " + str(downCount))
 
+    if (gestureMode == "YesNo"):
+        gesture = detector.thumbsUpDown(img)
+        if (gesture != 0):
+            
+            if (gesture == 1):
+                cv.putText(img, str("Thumbs up"), (100, 170), cv.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
+                upCount += 1
+            elif (gesture == -1):
+                cv.putText(img, str("Thumbs down"), (100, 170), cv.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
+                downCount += 1
+            
+            time.sleep(captureInterval)
+    
+    currTime = time.time()
+    fps = 1/(currTime-prevTime)
+    prevTime = currTime
+    cv.putText(img, str(int(fps)), (10, 70), cv.FONT_HERSHEY_PLAIN, 2, (255, 0, 0), 2)
 
-        cv2.imshow('Hand Tracking', image)
+    cv.imshow("Image", img)
 
-        if cv2.waitKey(10) and 0xFF == ord('q'):
-            break
-
-cap.release()
-cv2.destroyAllWindows()
+    if cv.waitKey(10) and 0xFF == ord('q'):
+        break
