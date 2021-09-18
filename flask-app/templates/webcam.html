@@ -31,15 +31,22 @@
 			</canvas>
 		</div>
 		<div>
+			<select id="img_type">
+				<option value="thumbs">Thumbs Up/Down</option>
+				<option value="rating">Rating 1-5</option>
+			</select>
+		</div>
+		<div>
 			<button id="button">
 				Take Picture
 			</button>
 		</div>
 	<script>
 
+		const imgTypeSelector = document.getElementById("img_type")
 		const video = document.querySelector("#video");
-		const button = document.querySelector('#button');
-		const canvas = document.querySelector('#canvas');
+		const button = document.querySelector("#button");
+		const canvas = document.querySelector("#canvas");
 		canvas.width = 500;
 		canvas.height = 375;
 		
@@ -48,12 +55,12 @@
 			canvas.height = video.videoHeight;
 			canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 
-			var img = canvas.toDataURL("image/png");
-			// console.log(img)
+			var img_type = imgTypeSelector.value;
+			var img_bytes = canvas.toDataURL("image/png");
 			fetch("api/v1/classify", {
 				method: "POST",
-				headers: {"Content-Type": "image/png"},
-				body: img
+				headers: {"Content-Type": "application/json"},
+				body: JSON.stringify({"img_type": img_type, "img_bytes": img_bytes})
 			})
 			.then(response => response.json())
 			.then(success => console.log("success"))

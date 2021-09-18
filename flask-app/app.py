@@ -14,19 +14,24 @@ def home():
 
 @app.route('/api/v1/classify', methods=['POST'])
 def classify():
-    img_bytes = base64.b64decode(request.data[22:])
+    data_dict = json.loads(request.data)
+    img_type = data_dict['img_type']
+    img_bytes = base64.b64decode(data_dict['img_bytes'][22:])
     img = np.array(Image.open(io.BytesIO(img_bytes)))
     img = cv.imread(img, 1)
     
+    result = 'null'
     # result type 1: thumbs up / down
-    result = gr.getThumbsUpDown(img)
+    if (img_type == 'thumbs'):
+        result = gr.getThumbsUpDown(img)
     
     # result type 2: rating 1-5
-    #result = gr.getRating(img[0])
+    if (img_type == 'rating'):
+        result = gr.getRating(img[0])
 
     print(result)
 
-    return jsonify({"something":result})
+    return jsonify({"classification": result})
 
 if __name__ == '__main__':
     app.run()
