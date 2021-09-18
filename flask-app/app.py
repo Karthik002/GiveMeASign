@@ -15,12 +15,12 @@ def home():
 def classify():
     img_bytes = base64.b64decode(request.data[22:])
     img = np.array(Image.open(io.BytesIO(img_bytes)))
-    
+
     # result type 1: thumbs up / down
-    result = gr.getThumbsUpDown(img)
+    result = gr.getThumbsUpDown(img[0])
 
     # result type 2: rating 1-5
-    result = gr.getRating(img)
+    result = gr.getRating(img[0])
 
     return jsonify({"something":result})
 
