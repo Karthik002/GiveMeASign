@@ -60,9 +60,9 @@ def getSurvey():
     target_survey = db_driver.getSurvey(surveyNameInput, surveyPasswordInput)
 
     if target_survey is None:
-        return render_template('survey.html', args=(False, {})) 
+        return render_template('thumbsSurvey.html', args=(False, {})) 
     else:
-        return render_template('survey.html', args=(True, target_survey))
+        return render_template('thumbsSurvey.html', args=(True, target_survey))
     
 
 if __name__ == '__main__':
