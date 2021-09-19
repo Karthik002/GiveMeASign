@@ -1,26 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Survey Picker</title>
-</head>
-<body>
-    <form method="POST" action="/api/v1/getSurvey">
-        <label for="surveyName">
-            Enter name of the survey you want to start:
-        </label>
-        <br>
-        <input type="text" placeholder="Survey Name" name="surveyName" id="surveyName"/>
-        <br>
-        <label for="surveyPassword">
-            Enter password of the survey you want to start:
-        </label>
-        <br>
-        <input type="password" placeholder="Survey Password" name="surveyPassword" id="surveyPassword"/>
-        <br>
-        <input type="submit" value="Submit"/>
-    </form>
-</body>
+<html>
+    <head>
+        <title>Hack the North 2021</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    </head>
+
+    <style>
+        .body1{
+            background-color: #E3E4F4;
+        }
+        h1{
+            color:blue;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+        }
+        p{
+            font-size: 125%;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        p.smaller{
+            font-size: 110%;
+        }
+        p font{
+            color: green;
+        }
+        #signin{
+            color:blue;
+            font-weight: bold;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        #signup{
+            color: white;
+            background-color: blue;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+        }
+        #coreUI{
+            margin: 4%;
+        }
+        #coreContent{
+            margin: 4%;
+            margin-top: 8%;
+            margin-bottom: 6%;
+        }
+        #homeimg{
+            width: 50%;
+            height: 50%;
+            margin-bottom: 4%;
+        }
+        .bottomUIButton{
+            color: #08105B;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        #startButton{
+            background-color: #7EE58E;
+            border: hidden;
+        }
+        .selectImg{
+            margin: 2%;
+            width: 40%;
+        }
+    </style>
+
+    <body class="body1">
+        <div class='container' id='coreUI'>
+            <center>
+                <div class='row'>
+                    <div class="col-md-3">
+                        <img src='images/logo.png'>
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </center>
+        </div>
+
+        <div class='container' id='coreContent'>
+            <div>
+                <form method="POST" action="/api/v1/getSurvey" style="margin-left: 20%;">
+                    <label for="surveyName" style="margin: 1%;">
+                        Enter name of the survey you want to start:
+                    </label>
+                    <br>
+                    <input type="text" placeholder="Survey Name" name="surveyName" id="surveyName" style="margin: 1%;"/>
+                    <br>
+                    <label for="surveyPassword" style="margin: 1%;">
+                        Enter password of the survey you want to start:
+                    </label>
+                    <br>
+                    <input type="password" placeholder="Survey Password" name="surveyPassword" id="surveyPassword" style="margin: 1%;"/>
+                    <br>
+                    <br>
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+        </div>
+
+        <div class='container' id='bottomUI'>
+            <center>
+                <div class='row'>
+                    <div class="col-md-3">
+                        <a href="createQuestions.html">
+                            <button type="submit" class="btn btn-light bottomUIButton" id='backButton'>Back</button>
+                        </a>
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-4">
+                        
+                    </div>
+                </div>
+            </center>
+        </div>
+
+
+
+
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+        <script src="layout.js"></script>
+    </body>
 </html>
