@@ -1,12 +1,98 @@
 <html>
     <head>
         <title>Hack the North 2021</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+        
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
+    <style>
+        .body1{
+            background-color: #E1E1E9;
+        }
+        h1{
+            color:blue;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+        }
+        p{
+            font-size: 125%;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        p.smaller{
+            font-size: 110%;
+        }
+        p font{
+            color: green;
+        }
+        #signin{
+            color:blue;
+            font-weight: bold;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        #signup{
+            color: white;
+            background-color: blue;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+        }
+        #coreUI{
+            margin: 4%;
+        }
+        #coreContent{
+            margin: 4%;
+            margin-top: 8%;
+            margin-bottom: 6%;
+        }
+        #homeimg{
+            width: 50%;
+            height: 50%;
+            margin-bottom: 4%;
+        }
+        .bottomUIButton{
+            color: #08105B;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        #startButton{
+            background-color: #7EE58E;
+            border: hidden;
+        }
+        #container {
+			margin: 0px auto;
+			width: 500px;
+			height: 375px;
+			border: 10px #333 solid;
+		}
+		#video {
+			width: 500px;
+			height: 375px;
+			background-color: #666;
+		}
+        #canvas {
+            display: none;
+        }
+    </style>
+
     <body class="body1">
+        <div class='container' id='coreUI'>
+            <center>
+                <div class='row'>
+                    <div>
+                        <img style="height: 100px;" src="{{ url_for('static', filename='logo.svg') }}" alt="">
+                    </div>
+                </div>
+            </center>
+        </div>
+
         <div class='container' id='coreContent'>
             <center>
                 <p>Question goes here</p>
@@ -19,6 +105,14 @@
                     <canvas id="canvas">
             
                     </canvas>
+                </div>
+                <div>
+                    <img style="margin: 5%; height: 200px;" src="{{ url_for('static', filename='thumbs.png') }}" alt="">
+                </div>
+                <div>
+                    <a href="/typeSelect">
+                        <button type="submit" class="btn btn-primary bottomUIButton" id='startButton'>Finish Survey</button>
+                    </a>
                 </div>
             </center>
         </div>
@@ -66,64 +160,9 @@
                     .catch(error => {console.log("Something went wrong!");});
             }
         </script>
+
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="{{ url_for('static', filename='layout.js') }}"></script>
     </body>
 </html>
-<!-- <!DOCTYPE html>
-<html>
-	<head>
-	<meta charset="utf-8">
-	<title>Webcam</title>
-	
-		<style>
-		#container {
-			margin: 0px auto;
-			width: 500px;
-			height: 375px;
-			border: 10px #333 solid;
-		}
-		#video {
-			width: 500px;
-			height: 375px;
-			background-color: #666;
-		}
-		</style>
-	</head>
-	
-	<body>
-		<div id="container">
-			<video autoplay="true" id="video">
-			
-			</video>
-		</div>
-		<div>
-			<canvas id="canvas">
-
-			</canvas>
-		</div>
-		<div>
-			<button id="button">
-				Take Picture
-			</button>
-		</div>
-	<script>
-
-		const video = document.querySelector("#video");
-		const button = document.querySelector('#button');
-		const canvas = document.querySelector('#canvas');
-		canvas.width = 500;
-		canvas.height = 375;
-		
-		button.onclick = () => {
-			canvas.width = video.videoWidth;
-			canvas.height = video.videoHeight;
-			canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-		};
-
-		if (navigator.mediaDevices.getUserMedia) {
-			navigator.mediaDevices.getUserMedia({ video: true })
-				.then(stream => {video.srcObject = stream;})
-				.catch(error => {console.log("Something went wrong!");});
-		}
-	</script>
-	</body>
-</html> -->
