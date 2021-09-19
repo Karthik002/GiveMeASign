@@ -44,7 +44,7 @@
     </div>
     <script>
 
-        // var surveyJson = {{ args[1]|safe }};    // this is the json for the survey data, it shows as error but its not, it works perfectly
+        var surveyJson = {{ args[1]|safe }};    // this is the json for the survey data, it shows as error but its not, it works perfectly
         const numQuestions = surveyJson['questions'].length
         var currQuestion = 0;
 
