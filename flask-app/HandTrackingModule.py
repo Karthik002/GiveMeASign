@@ -9,7 +9,6 @@ class HandDetector():
         self.max_num_hands = max_num_hands
         self.min_detection_confidence = min_detection_confidence
         self.min_tracking_confidence = min_tracking_confidence
-
         self.mpHands = mp.solutions.hands
         self.hands = self.mpHands.Hands(self.static_image_mode, self.max_num_hands, self.min_detection_confidence, self.min_tracking_confidence)
         self.mpDraw = mp.solutions.drawing_utils
@@ -97,7 +96,6 @@ class HandDetector():
                 cv.putText(img, str(self.fingersOutput[totalFingers]), (400, 120), cv.FONT_HERSHEY_DUPLEX, 5, (255, 255,255), 4)
 
         return self.fingers.count(1)
-
 
 def main():
     
