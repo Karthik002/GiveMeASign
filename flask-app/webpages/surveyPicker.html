@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Picker</title>
+</head>
+<body>
+    <form method="POST" action="/api/v1/getSurvey">
+        <label for="surveyName">
+            Enter name of the survey you want to start:
+        </label>
+        <br>
+        <input type="text" placeholder="Survey Name" name="surveyName" id="surveyName"/>
+        <br>
+        <label for="surveyPassword">
+            Enter password of the survey you want to start:
+        </label>
+        <br>
+        <input type="password" placeholder="Survey Password" name="surveyPassword" id="surveyPassword"/>
+        <br>
+        <input type="submit" value="Submit"/>
+    </form>
+</body>
+</html>

@@ -6,11 +6,11 @@ import numpy as np
 import base64
 import GestureRecognition as gr
 
-app = Flask(__name__, template_folder='templates')
+app = Flask(__name__, template_folder='webpages')
 
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('surveyPicker.html')
+    return render_template('thumbsAnswers.html')
 
 @app.route('/api/v1/classify', methods=['POST'])
 def classify():
