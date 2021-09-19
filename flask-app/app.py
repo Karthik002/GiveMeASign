@@ -10,7 +10,7 @@ app = Flask(__name__, template_folder='templates')
 
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('webcam.html')
+    return render_template('surveyPicker.html')
 
 @app.route('/api/v1/classify', methods=['POST'])
 def classify():
@@ -35,6 +35,29 @@ def classify():
         # send request to stop classification for x seconds
 
     return jsonify({"classification": result})
+
+@app.route('/api/v1/getSurvey', methods=['POST'])
+def getSurvey():
+
+    # we should use survey name and password to access the survey from the db but for now we will just mock the data
+    surveyName = request.form.get('surveyName')
+    surveyPassword = request.form.get('surveyPassword')
+    
+    status = False
+    surveyJson = {}
+    if surveyName == "name" and surveyPassword == "password":   # for now default name and pw is 'name' and 'password'
+        status = True 
+        surveyJson = {
+            "name": "My Survey",
+            "type": "thumbs",
+            "questions": [
+                "How are you today?",
+                "Are you enjoying hack the north?"
+            ]            
+        }
+
+    return render_template('survey.html', args=(status, surveyJson))
+    
 
 if __name__ == '__main__':
     app.run()

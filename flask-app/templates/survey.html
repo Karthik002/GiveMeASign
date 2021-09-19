@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <style>
+		#container {
+			margin: 0px auto;
+			width: 500px;
+			height: 375px;
+			border: 10px #333 solid;
+		}
+		#video {
+			width: 500px;
+			height: 375px;
+			background-color: #666;
+		}
+        #canvas {
+            display: none;
+        }
+	</style>
+</head>
+<body>
+    <div>
+        {% if args[0] == False %}
+            Wrong credentials. Please go back and try again.
+        {% endif %}
+
+        {% if args[0] == True %}
+            {{ args[1] }}
+        {% endif %}
+    </div>
+    <div id="container">
+        <video autoplay="true" id="video">
+        
+        </video>
+    </div>
+    <div>
+        <canvas id="canvas">
+
+        </canvas>
+    </div>
+    <script>
+
+        // var surveyJson = {{ args[1]|safe }};    // this is the json for the survey data, it shows as error but its not, it works perfectly
+        const numQuestions = surveyJson['questions'].length
+        var currQuestion = 0;
+
+		const imgTypeSelector = document.getElementById("img_type")
+        const video = document.querySelector("#video");
+		const button = document.querySelector("#button");
+		const canvas = document.querySelector("#canvas");
+		canvas.width = 500;
+		canvas.height = 375;
+
+        const sampleRate = 5000
+		const samplingInterval = setInterval(() => {
+			canvas.width = video.videoWidth;
+			canvas.height = video.videoHeight;
+			canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            var img_type = surveyJson['type']
+			var img_bytes = canvas.toDataURL("image/png");
+			fetch("classify", {
+				method: "POST",
+				headers: {"Content-Type": "application/json"},
+				body: JSON.stringify({"img_type": img_type, "img_bytes": img_bytes})
+			})
+			.then(response => response.json())
+			.then(data => {
+                if (data['classification'] !== 0 && data['classification'] !== "0") {
+                    // TODO: call function that would make a post request to endpoint to store the response (still need to implement the function)
+                    currQuestion++;
+                    if (currQuestion === numQuestions) clearInterval(samplingInterval)
+                }
+            })
+			.catch(error => console.log("error"));
+		}, sampleRate);
+
+		if (navigator.mediaDevices.getUserMedia) {
+			navigator.mediaDevices.getUserMedia({ video: true })
+				.then(stream => {video.srcObject = stream;})
+				.catch(error => {console.log("Something went wrong!");});
+		}
+	</script>
+</body>
+</html>
