@@ -10,7 +10,19 @@ app = Flask(__name__, template_folder='templates')
 
 @app.route('/', methods=['GET'])
 def home():
+    return render_template('home.html')
+
+@app.route('/typeSelect', methods=['GET'])
+def typeSelect():
+    return render_template('typeSelect.html')
+
+@app.route('/surveyPicker', methods=['GET'])
+def surveyPicker():
     return render_template('surveyPicker.html')
+
+@app.route('/createQuestions', methods=['GET'])
+def createQuestions():
+    return render_template('createQuestions.html')
 
 @app.route('/api/v1/classify', methods=['POST'])
 def classify():

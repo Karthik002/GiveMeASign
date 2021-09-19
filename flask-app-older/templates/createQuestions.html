@@ -1,0 +1,195 @@
+<html>
+    <head>
+        <title>Hack the North 2021</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    </head>
+
+    <style>
+        .body1{
+            background-color: #E3E4F4;
+        }
+        h1{
+            color:blue;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+        }
+        p{
+            font-size: 125%;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        p.smaller{
+            font-size: 110%;
+        }
+        p font{
+            color: green;
+        }
+        #signin{
+            color:blue;
+            font-weight: bold;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        #signup{
+            color: white;
+            background-color: blue;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+        }
+        #coreUI{
+            margin: 4%;
+        }
+        #coreContent{
+            margin: 4%;
+            margin-top: 8%;
+            margin-bottom: 6%;
+        }
+        #homeimg{
+            width: 50%;
+            height: 50%;
+            margin-bottom: 4%;
+        }
+        .bottomUIButton{
+            color: #08105B;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        #startButton{
+            background-color: #7EE58E;
+            border: hidden;
+        }
+        #questions{
+            margin: 5%;
+        }
+        .qnum{
+            padding: 5%;
+            background-color: white;
+            margin: 2%;
+            color: blue;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+    </style>
+
+    <body class="body1">
+        <div class='container' id='coreUI'>
+            <center>
+                <div class='row'>
+                    <div class="col-md-3">
+                        <img src="{{ url_for('static', filename='logo.png') }}">
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </center>
+        </div>
+
+        <div class='container' id='coreContent'>
+            <center>
+                <p>What would you like to know?</p>
+                <div id='questions'>
+                    <center>
+                        <div class='row' style='margin: 1%;'>
+                            <div class="col-md-2">
+                                
+                            </div>
+                            <div class="col-md-1">
+                                <div class='qNum'>
+                                    Q1
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                    <textarea style='width: 100%;'></textarea>
+                            </div>
+                        </div>
+
+                        <div class='row' style='margin: 1%;'>
+                            <div class="col-md-2">
+                                
+                            </div>
+                            <div class="col-md-1">
+                                <div class='qNum'>
+                                    Q2
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea style='width: 100%;'></textarea>
+                            </div>
+                        </div>
+
+                        <div class='row' style='margin: 1%;'>
+                            <div class="col-md-2">
+                                
+                            </div>
+                            <div class="col-md-1">
+                                <div class='qNum'>
+                                    Q3
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea style='width: 100%;'></textarea>
+                            </div>
+                        </div>
+                        
+                        <div class='row' style='margin: 1%;'>
+                            <div class="col-md-2">
+                                
+                            </div>
+                            <div class="col-md-1">
+                                <div class='qNum'>
+                                    Q4
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea style='width: 100%;'></textarea>
+                            </div>
+                        </div>
+
+                        <div class='row' style='margin: 1%;'>
+                            <div class="col-md-2">
+                                
+                            </div>
+                            <div class="col-md-1">
+                                <div class='qNum'>
+                                    Q5
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea style='width: 100%;'></textarea>
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            </center>
+        </div>
+
+        <div class='container' id='bottomUI'>
+            <center>
+                <div class='row'>
+                    <div class="col-md-3">
+                        <a href="/typeSelect">
+                            <button type="submit" class="btn btn-light bottomUIButton" id='backButton'>Back</button>
+                        </a>
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/surveyPicker">
+                            <button type="submit" class="btn btn-primary bottomUIButton" id='startButton'>Launch</button>
+                        </a>
+                    </div>
+                </div>
+            </center>
+        </div>
+
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="{{ url_for('static', filename='layout.js') }}"></script>
+    </body>
+</html>

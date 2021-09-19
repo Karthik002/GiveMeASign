@@ -11,16 +11,16 @@
 
     <style>
         .body1{
-            background-color: #E3E4F4;
+            background-color: #E1E1E9;
         }
         h1{
             color:blue;
-            font-family: 'Josefin Sans', sans-serif;
+            font-family: "Josefin Sans", sans-serif;
             font-weight: bold;
         }
         p{
             font-size: 125%;
-            font-family: 'Poppins', sans-serif;
+            font-family: "Poppins", sans-serif;
             font-weight: bold;
         }
         p.smaller{
@@ -32,12 +32,12 @@
         #signin{
             color:blue;
             font-weight: bold;
-            font-family: 'Josefin Sans', sans-serif;
+            font-family: "Josefin Sans", sans-serif;
         }
         #signup{
             color: white;
             background-color: blue;
-            font-family: 'Josefin Sans', sans-serif;
+            font-family: "Josefin Sans", sans-serif;
             font-weight: bold;
         }
         #coreUI{
@@ -55,71 +55,62 @@
         }
         .bottomUIButton{
             color: #08105B;
-            font-family: 'Poppins', sans-serif;
+            font-family: "Poppins", sans-serif;
             font-weight: bold;
         }
         #startButton{
             background-color: #7EE58E;
             border: hidden;
         }
-        .selectImg{
-            margin: 2%;
-            width: 40%;
-        }
     </style>
 
     <body class="body1">
-        <div class='container' id='coreUI'>
+        <div class="container" id="coreUI">
             <center>
-                <div class='row'>
+                <div class="row">
                     <div class="col-md-3">
-                        <img src="{{ url_for('static', filename='logo.png') }}">
+                        <button type="button" class="btn btn-primary">Logo</button>
                     </div>
                     <div class="col-md-5">
                     </div>
                     <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-light" id="signin">Sign In</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary" id="signup">Sign Up</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </center>
         </div>
 
-        <div class='container' id='coreContent'>
-            <div>
-                <form method="POST" action="/api/v1/getSurvey" style="margin-left: 20%;">
-                    <label for="surveyName" style="margin: 1%;">
-                        Enter name of the survey you want to start:
-                    </label>
-                    <br>
-                    <input type="text" placeholder="Survey Name" name="surveyName" id="surveyName" style="margin: 1%;"/>
-                    <br>
-                    <label for="surveyPassword" style="margin: 1%;">
-                        Enter password of the survey you want to start:
-                    </label>
-                    <br>
-                    <input type="password" placeholder="Survey Password" name="surveyPassword" id="surveyPassword" style="margin: 1%;"/>
-                    <br>
-                    <br>
-                    <div class="col-md-4">
-                        <button type="submit" class="btn btn-light bottomUIButton" id='startButton'>Submit</button>
-                    </div>
-                </form>
-            </div>
+        <div class="container" id="coreContent">
+            <center>
+                <p>Get <font>immediate ratings</font> with handsfree <br> gestures for a smooth customer experience</p>
+                <img src="{{ url_for('static', filename='home.png') }}" id="homeimg">
+                <p class="smaller">Simply set up your device where your customers can see <br> and we"ll do the rest for you. Ask away!</p>
+            </center>
         </div>
 
-        <div class='container' id='bottomUI'>
+        <div class="container" id="bottomUI">
             <center>
-                <div class='row'>
+                <div class="row">
                     <div class="col-md-3">
-                        <a href="/createQuestions">
-                            <button type="submit" class="btn btn-light bottomUIButton" id='backButton'>Back</button>
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/typeSelect">
+                            <button type="submit" class="btn btn-primary bottomUIButton" id="startButton">Start Now</button>
                         </a>
                     </div>
-                    <div class="col-md-5">
-                    </div>
                 </div>
             </center>
         </div>
-
+        
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
         <script src="{{ url_for('static', filename='layout.js') }}"></script>
