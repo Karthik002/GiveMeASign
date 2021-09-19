@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <title>Hack the North 2021</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    </head>
+
+    <style>
+        .body1{
+            background-color: #E1E1E9;
+        }
+        h1{
+            color:blue;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+        }
+        p{
+            font-size: 125%;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        p.smaller{
+            font-size: 110%;
+        }
+        p font{
+            color: green;
+        }
+        #signin{
+            color:blue;
+            font-weight: bold;
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        #signup{
+            color: white;
+            background-color: blue;
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: bold;
+        }
+        #coreUI{
+            margin: 4%;
+        }
+        #coreContent{
+            margin: 4%;
+            margin-top: 8%;
+            margin-bottom: 6%;
+        }
+        #homeimg{
+            width: 50%;
+            height: 50%;
+            margin-bottom: 4%;
+        }
+        .bottomUIButton{
+            color: #08105B;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+        #startButton{
+            background-color: #7EE58E;
+            border: hidden;
+        }
+    </style>
+
+    <body class="body1">
+        <div class='container' id='coreUI'>
+            <center>
+                <div class='row'>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-primary">Logo</button>
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-4">
+                    </div>
+                </div>
+            </center>
+        </div>
+
+        <div class='container' id='coreContent'>
+            <center>
+                <p>Get <font>immediate ratings</font> with handsfree <br> gestures for a smooth customer experience</p>
+                <img src='images/home.png' id='homeimg'>
+                <p class='smaller'>Simply set up your device where your customers can see <br> and we'll do the rest for you. Ask away!</p>
+            </center>
+        </div>
+
+        <div class='container' id='bottomUI'>
+            <center>
+                <div class='row'>
+                    <div class="col-md-3">
+                        <a href="typeSelect.html">
+                            <button type="submit" class="btn btn-light bottomUIButton" id='backButton'>Back</button>
+                        </a>
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-4">
+                        <a href="thumbsMain.html">
+                            <button type="submit" class="btn btn-primary bottomUIButton" id='startButton'>Next</button>
+                        </a>
+                    </div>
+                </div>
+            </center>
+        </div>
+
+
+
+
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+        <script src="layout.js"></script>
+    </body>
+</html>
