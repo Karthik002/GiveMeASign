@@ -148,7 +148,7 @@
                     if (data['classification'] !== 0 && data['classification'] !== "0") {
                         // TODO: call function that would make a post request to endpoint to store the response (still need to implement the function)
                         currQuestion++;
-                        if (currQuestion === numQuestions) clearInterval(samplingInterval)
+                        // if (currQuestion === numQuestions) clearInterval(samplingInterval)
                     }
                 })
                 .catch(error => console.log("error"));
