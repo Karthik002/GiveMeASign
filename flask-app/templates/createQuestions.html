@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Hack the North 2021</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,7 +80,7 @@
             <center>
                 <div class='row'>
                     <div class="col-md-3">
-                        <img src='images/logo.png'>
+                        <img src="{{ url_for('static', filename='logo.png') }}">
                     </div>
                     <div class="col-md-5">
                     </div>
@@ -173,14 +173,14 @@
             <center>
                 <div class='row'>
                     <div class="col-md-3">
-                        <a href="typeSelect.html">
+                        <a href="/typeSelect">
                             <button type="submit" class="btn btn-light bottomUIButton" id='backButton'>Back</button>
                         </a>
                     </div>
                     <div class="col-md-5">
                     </div>
                     <div class="col-md-4">
-                        <a href="surveyPicker.html">
+                        <a href="/surveyPicker">
                             <button type="submit" class="btn btn-primary bottomUIButton" id='startButton'>Launch</button>
                         </a>
                     </div>
@@ -188,12 +188,8 @@
             </center>
         </div>
 
-
-
-
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-        <script src="layout.js"></script>
+        <script src="{{ url_for('static', filename='layout.js') }}"></script>
     </body>
 </html>

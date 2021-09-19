@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Hack the North 2021</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +45,7 @@
         }
         #coreContent{
             margin: 4%;
-            margin-top: 6%;
+            margin-top: 8%;
             margin-bottom: 6%;
         }
         #homeimg{
@@ -62,6 +62,10 @@
             background-color: #7EE58E;
             border: hidden;
         }
+        .selectImg{
+            margin: 2%;
+            width: 40%;
+        }
     </style>
 
     <body class="body1">
@@ -69,54 +73,55 @@
             <center>
                 <div class='row'>
                     <div class="col-md-3">
-                        <img src='images/logo.png'>
+                        <img src="{{ url_for('static', filename='logo.png') }}">
                     </div>
                     <div class="col-md-5">
                     </div>
                     <div class="col-md-4">
-                        <div class='row'>
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-light" id='signin'>Sign In</button>
-                            </div>
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-primary" id='signup'>Sign Up</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </center>
         </div>
 
         <div class='container' id='coreContent'>
-            <center>
-                <p>Get <font>immediate ratings</font> with handsfree <br> gestures for a smooth customer experience</p>
-                <img src='images/home.png' id='homeimg'>
-                <p class='smaller'>Simply set up your device where your customers can see <br> and we'll do the rest for you. Ask away!</p>
-            </center>
+            <div>
+                <form method="POST" action="/api/v1/getSurvey" style="margin-left: 20%;">
+                    <label for="surveyName" style="margin: 1%;">
+                        Enter name of the survey you want to start:
+                    </label>
+                    <br>
+                    <input type="text" placeholder="Survey Name" name="surveyName" id="surveyName" style="margin: 1%;"/>
+                    <br>
+                    <label for="surveyPassword" style="margin: 1%;">
+                        Enter password of the survey you want to start:
+                    </label>
+                    <br>
+                    <input type="password" placeholder="Survey Password" name="surveyPassword" id="surveyPassword" style="margin: 1%;"/>
+                    <br>
+                    <br>
+                </form>
+            </div>
         </div>
 
         <div class='container' id='bottomUI'>
             <center>
                 <div class='row'>
                     <div class="col-md-3">
+                        <a href="/createQuestions">
+                            <button type="submit" class="btn btn-light bottomUIButton" id='backButton'>Back</button>
+                        </a>
                     </div>
                     <div class="col-md-5">
                     </div>
                     <div class="col-md-4">
-                        <a href="typeSelect.html">
-                            <button type="submit" class="btn btn-primary bottomUIButton" id='startButton'>Start Now</button>
-                        </a>
+                        <button type="submit" class="btn btn-light bottomUIButton" id='startButton'>Submit</button>
                     </div>
                 </div>
             </center>
         </div>
 
-
-
-
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-        <script src="layout.js"></script>
+        <script src="{{ url_for('static', filename='layout.js') }}"></script>
     </body>
 </html>

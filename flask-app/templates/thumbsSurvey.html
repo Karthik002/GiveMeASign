@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Hack the North 2021</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,7 +87,7 @@
             <center>
                 <div class='row'>
                     <div>
-                        <img style="height: 100px;" src="images/logo.svg" alt="">
+                        <img style="height: 100px;" src="{{ url_for('static', filename='logo.svg') }}" alt="">
                     </div>
                 </div>
             </center>
@@ -107,10 +107,10 @@
                     </canvas>
                 </div>
                 <div>
-                    <img style="margin: 5%; height: 200px;" src="images/thumbs.png" alt="">
+                    <img style="margin: 5%; height: 200px;" src="{{ url_for('static', filename='thumbs.png') }}" alt="">
                 </div>
                 <div>
-                    <a href="typeSelect.html">
+                    <a href="/typeSelect">
                         <button type="submit" class="btn btn-primary bottomUIButton" id='startButton'>Finish Survey</button>
                     </a>
                 </div>
@@ -163,7 +163,6 @@
 
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-        <script src="layout.js"></script>
+        <script src="{{ url_for('static', filename='layout.js') }}"></script>
     </body>
 </html>

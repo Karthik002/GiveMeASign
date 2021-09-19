@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Hack the North 2021</title>
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,7 @@
 
     <style>
         .body1{
-            background-color: #E3E4F4;
+            background-color: #E1E1E9;
         }
         h1{
             color:blue;
@@ -62,10 +62,6 @@
             background-color: #7EE58E;
             border: hidden;
         }
-        .selectImg{
-            margin: 2%;
-            width: 40%;
-        }
     </style>
 
     <body class="body1">
@@ -73,7 +69,7 @@
             <center>
                 <div class='row'>
                     <div class="col-md-3">
-                        <img src='images/logo.png'>
+                        <button type="button" class="btn btn-primary">Logo</button>
                     </div>
                     <div class="col-md-5">
                     </div>
@@ -86,13 +82,7 @@
         <div class='container' id='coreContent'>
             <center>
                 <p>What type of answer are you looking for</p>
-                <a href='createQuestions.html'>
-                    <img src='images/thumbs.png' class='selectImg'>
-                </a>
-                <br>
-                <a href='createQuestions.html'>
-                    <img src='images/stars.png' class='selectImg'>
-                </a>
+                
             </center>
         </div>
 
@@ -100,25 +90,23 @@
             <center>
                 <div class='row'>
                     <div class="col-md-3">
-                        <a href="home.html">
+                        <a href="/">
                             <button type="submit" class="btn btn-light bottomUIButton" id='backButton'>Back</button>
                         </a>
                     </div>
                     <div class="col-md-5">
                     </div>
                     <div class="col-md-4">
-                        
+                        <a href="/createQuestions">
+                            <button type="submit" class="btn btn-primary bottomUIButton" id='startButton'>Next</button>
+                        </a>
                     </div>
                 </div>
             </center>
         </div>
 
-
-
-
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-        <script src="layout.js"></script>
+        <script src="{{ url_for('static', filename='layout.js') }}"></script>
     </body>
 </html>
