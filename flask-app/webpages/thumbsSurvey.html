@@ -62,6 +62,20 @@
             background-color: #7EE58E;
             border: hidden;
         }
+        #container {
+			margin: 0px auto;
+			width: 500px;
+			height: 375px;
+			border: 10px #333 solid;
+		}
+		#video {
+			width: 500px;
+			height: 375px;
+			background-color: #666;
+		}
+        #canvas {
+            display: none;
+        }
     </style>
 
     <body class="body1">
@@ -73,25 +87,23 @@
                     </div>
                     <div class="col-md-5">
                     </div>
-                    <div class="col-md-4">
-                        <div class='row'>
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-light" id='signin'>Sign In</button>
-                            </div>
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-primary" id='signup'>Sign Up</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </center>
         </div>
 
         <div class='container' id='coreContent'>
             <center>
-                <p>Get <font>immediate ratings</font> with handsfree <br> gestures for a smooth customer experience</p>
-                <img src='images/home.png' id='homeimg'>
-                <p class='smaller'>Simply set up your device where your customers can see <br> and we'll do the rest for you. Ask away!</p>
+                <p>Question goes here</p>
+                <div id="container">
+                    <video autoplay="true" id="video">
+                    
+                    </video>
+                </div>
+                <div>
+                    <canvas id="canvas">
+            
+                    </canvas>
+                </div>
             </center>
         </div>
 
@@ -104,15 +116,56 @@
                     </div>
                     <div class="col-md-4">
                         <a href="typeSelect.html">
-                            <button type="submit" class="btn btn-primary bottomUIButton" id='startButton'>Start Now</button>
+                            <button type="submit" class="btn btn-primary bottomUIButton" id='startButton'>Finish Survey</button>
                         </a>
                     </div>
                 </div>
             </center>
         </div>
 
+        <script>
 
-
+            var surveyJson = {{ args[1]|safe }};    // this is the json for the survey data, it shows as error but its not, it works perfectly
+            const numQuestions = surveyJson['questions'].length
+            var currQuestion = 0;
+    
+            const imgTypeSelector = document.getElementById("img_type")
+            const video = document.querySelector("#video");
+            const button = document.querySelector("#button");
+            const canvas = document.querySelector("#canvas");
+            canvas.width = 500;
+            canvas.height = 375;
+    
+            const sampleRate = 5000
+            const samplingInterval = setInterval(() => {
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+    
+                var img_type = surveyJson['type']
+                var img_bytes = canvas.toDataURL("image/png");
+                fetch("classify", {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body: JSON.stringify({"img_type": img_type, "img_bytes": img_bytes})
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data['classification'] !== 0 && data['classification'] !== "0") {
+                        // TODO: call function that would make a post request to endpoint to store the response (still need to implement the function)
+                        currQuestion++;
+                        if (currQuestion === numQuestions) clearInterval(samplingInterval)
+                    }
+                })
+                .catch(error => console.log("error"));
+            }, sampleRate);
+    
+            if (navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(stream => {video.srcObject = stream;})
+                    .catch(error => {console.log("Something went wrong!");});
+            }
+        </script>
 
         <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
         <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>

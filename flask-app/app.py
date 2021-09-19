@@ -10,7 +10,7 @@ app = Flask(__name__, template_folder='webpages')
 
 @app.route('/', methods=['GET'])
 def home():
-    return render_template('thumbsAnswers.html')
+    return render_template('thumbsSurvey.html')
 
 @app.route('/api/v1/classify', methods=['POST'])
 def classify():
